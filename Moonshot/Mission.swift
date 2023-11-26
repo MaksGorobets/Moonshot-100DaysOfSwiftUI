@@ -18,6 +18,10 @@ struct Mission: Codable, Identifiable {
     var crew: [Crew]
     var description: String
     
+    var displayName: String {
+        return "Apollo \(id)"
+    }
+    
     var image: String {
         return "apollo\(id)"
     }

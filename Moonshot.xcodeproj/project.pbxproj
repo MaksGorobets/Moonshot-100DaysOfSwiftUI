@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E98665A22B13EE1F000FC60E /* AstronautView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E98665A12B13EE1F000FC60E /* AstronautView.swift */; };
 		E9D8014A2B1112F70054FB9F /* MoonshotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D801492B1112F70054FB9F /* MoonshotApp.swift */; };
 		E9D8014C2B1112F70054FB9F /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8014B2B1112F70054FB9F /* ContentView.swift */; };
 		E9D8014E2B1112F80054FB9F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E9D8014D2B1112F80054FB9F /* Assets.xcassets */; };
@@ -17,9 +18,11 @@
 		E9D8015E2B111A180054FB9F /* Bundle-Decodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8015D2B111A180054FB9F /* Bundle-Decodable.swift */; };
 		E9D801602B111A980054FB9F /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D8015F2B111A980054FB9F /* Mission.swift */; };
 		E9D801622B11254D0054FB9F /* Color-Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9D801612B11254D0054FB9F /* Color-Theme.swift */; };
+		E9E94A062B13D655002E8117 /* MissionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9E94A052B13D655002E8117 /* MissionView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E98665A12B13EE1F000FC60E /* AstronautView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AstronautView.swift; sourceTree = "<group>"; };
 		E9D801462B1112F70054FB9F /* Moonshot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Moonshot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9D801492B1112F70054FB9F /* MoonshotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoonshotApp.swift; sourceTree = "<group>"; };
 		E9D8014B2B1112F70054FB9F /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -31,6 +34,7 @@
 		E9D8015D2B111A180054FB9F /* Bundle-Decodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle-Decodable.swift"; sourceTree = "<group>"; };
 		E9D8015F2B111A980054FB9F /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		E9D801612B11254D0054FB9F /* Color-Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color-Theme.swift"; sourceTree = "<group>"; };
+		E9E94A052B13D655002E8117 /* MissionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +70,15 @@
 				E9D801492B1112F70054FB9F /* MoonshotApp.swift */,
 				E9D8014B2B1112F70054FB9F /* ContentView.swift */,
 				E9D8015D2B111A180054FB9F /* Bundle-Decodable.swift */,
+				E9E94A052B13D655002E8117 /* MissionView.swift */,
+				E98665A12B13EE1F000FC60E /* AstronautView.swift */,
 				E9D8015B2B1114A30054FB9F /* Astronaut.swift */,
 				E9D8015F2B111A980054FB9F /* Mission.swift */,
+				E9D801612B11254D0054FB9F /* Color-Theme.swift */,
 				E9D801572B1113170054FB9F /* astronauts.json */,
 				E9D801582B1113170054FB9F /* missions.json */,
 				E9D8014D2B1112F80054FB9F /* Assets.xcassets */,
 				E9D8014F2B1112F80054FB9F /* Preview Content */,
-				E9D801612B11254D0054FB9F /* Color-Theme.swift */,
 			);
 			path = Moonshot;
 			sourceTree = "<group>";
@@ -157,7 +163,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9E94A062B13D655002E8117 /* MissionView.swift in Sources */,
 				E9D8015C2B1114A30054FB9F /* Astronaut.swift in Sources */,
+				E98665A22B13EE1F000FC60E /* AstronautView.swift in Sources */,
 				E9D801622B11254D0054FB9F /* Color-Theme.swift in Sources */,
 				E9D8014C2B1112F70054FB9F /* ContentView.swift in Sources */,
 				E9D8014A2B1112F70054FB9F /* MoonshotApp.swift in Sources */,
