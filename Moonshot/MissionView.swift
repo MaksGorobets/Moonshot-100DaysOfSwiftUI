@@ -7,20 +7,18 @@
 
 import SwiftUI
 
+struct CrewMember {
+    var role: String
+    var astronaut: Astronaut
+}
+
 struct MissionView: View {
-    
-    struct CrewMember {
-        var role: String
-        var astronaut: Astronaut
-    }
     
     let mission: Mission
     
     let crew: [CrewMember]
     
     let astronauts: [String: Astronaut]
-    
-    let gradient = LinearGradient(colors: [.red, .blue, .green, .yellow], startPoint: .leading, endPoint: .trailing)
     
     var body: some View {
         NavigationStack {
@@ -34,6 +32,7 @@ struct MissionView: View {
                         .containerRelativeFrame(.horizontal) { width, Axis in
                             width * 0.6
                         }
+                    Text(mission.formattedLaunchDate)
                     VStack(alignment: .leading) {
                         CustomDevider()
                         Text("Mission Highlights")
@@ -46,32 +45,7 @@ struct MissionView: View {
                             .padding(.bottom, 5)
                     }
                     .padding(.horizontal)
-                }
-                ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(crew, id: \.role) { crewMember in
-                            NavigationLink {
-                                AstronautView(astronaut: crewMember.astronaut)
-                            } label: {
-                                Image(crewMember.astronaut.id)
-                                    .resizable()
-                                    .frame(width: 104, height: 72)
-                                    .clipShape(.capsule)
-                                    .overlay (
-                                        Capsule()
-                                            .strokeBorder(gradient, lineWidth: 2)
-                                    )
-                                VStack(alignment: .leading) {
-                                    Text(crewMember.astronaut.name)
-                                        .foregroundStyle(.white)
-                                        .font(.system(size: 20))
-                                        .italic()
-                                    Text(crewMember.role)
-                                        .foregroundStyle(.gray)
-                                }
-                            }
-                        }
-                    }
+                    CrewScrollView(crew: crew)
                 }
             }
             .background(.darkBackground)
@@ -102,9 +76,46 @@ struct CustomDevider: View {
     }
 }
 
+struct CrewScrollView: View {
+    
+    let crew: [CrewMember]
+    
+    let gradient = LinearGradient(colors: [.red, .blue, .green, .yellow], startPoint: .leading, endPoint: .trailing)
+    
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(crew, id: \.role) { crewMember in
+                    NavigationLink {
+                        AstronautView(astronaut: crewMember.astronaut)
+                    } label: {
+                        Image(crewMember.astronaut.id)
+                            .resizable()
+                            .frame(width: 104, height: 72)
+                            .clipShape(.capsule)
+                            .overlay (
+                                Capsule()
+                                    .strokeBorder(gradient, lineWidth: 2)
+                            )
+                        VStack(alignment: .leading) {
+                            Text(crewMember.astronaut.name)
+                                .foregroundStyle(.white)
+                                .font(.system(size: 20))
+                                .italic()
+                            Text(crewMember.role)
+                                .foregroundStyle(.gray)
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
 #Preview {
     let missions: [Mission] = Bundle.main.decode(file: "missions")
     let astronauts: [String: Astronaut] = Bundle.main.decode(file: "astronauts")
-    return MissionView(mission: missions[0], astronauts: astronauts)
+    return MissionView(mission: missions[3], astronauts: astronauts)
         .preferredColorScheme(.dark)
 }
+
