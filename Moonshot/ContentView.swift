@@ -12,16 +12,21 @@ struct ContentView: View {
     let astronauts: [String: Astronaut] = Bundle.main.decode(file: "astronauts")
     let missions: [Mission] = Bundle.main.decode(file: "missions")
     
+    @State private var path = NavigationPath()
+    
     @State private var isGrid = false
     
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             ScrollView {
                 if isGrid {
                     MissionGridView(astronauts: astronauts, missions: missions)
                 } else {
                     MissionListView(astronauts: astronauts, missions: missions)
                 }
+            }
+            .navigationDestination(for: Mission.self) { item in
+                MissionView(mission: item, astronauts: astronauts)
             }
             .toolbar {
                 Button("View") {
@@ -49,9 +54,7 @@ struct MissionGridView: View {
     var body: some View {
         LazyVGrid(columns: grid) {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     VStack {
                         Image(mission.image)
                             .resizable()
@@ -90,9 +93,7 @@ struct MissionListView: View {
     var body: some View {
         LazyVStack() {
             ForEach(missions) { mission in
-                NavigationLink {
-                    MissionView(mission: mission, astronauts: astronauts)
-                } label: {
+                NavigationLink(value: mission) {
                     VStack {
                         HStack {
                             Image(mission.image)

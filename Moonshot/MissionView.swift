@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CrewMember {
+struct CrewMember: Hashable, Equatable {
     var role: String
     var astronaut: Astronaut
 }
@@ -21,39 +21,37 @@ struct MissionView: View {
     let astronauts: [String: Astronaut]
     
     var body: some View {
-        NavigationStack {
-            ScrollView {
-                VStack {
-                    Image(mission.image)
-                        .resizable()
-                        .scaledToFit()
-                        .shadow(color: .yellow, radius: 5)
-                        .padding(.vertical)
-                        .containerRelativeFrame(.horizontal) { width, Axis in
-                            width * 0.6
-                        }
-                    Text(mission.formattedLaunchDate)
-                    VStack(alignment: .leading) {
-                        CustomDevider()
-                        Text("Mission Highlights")
-                            .font(.title.bold())
-                            .padding(.bottom, 5)
-                        Text(mission.description)
-                        CustomDevider()
-                        Text("Crew")
-                            .font(.title.bold())
-                            .padding(.bottom, 5)
+        ScrollView {
+            VStack {
+                Image(mission.image)
+                    .resizable()
+                    .scaledToFit()
+                    .shadow(color: .yellow, radius: 5)
+                    .padding(.vertical)
+                    .containerRelativeFrame(.horizontal) { width, Axis in
+                        width * 0.6
                     }
-                    .padding(.horizontal)
-                    CrewScrollView(crew: crew)
+                Text(mission.formattedLaunchDate)
+                VStack(alignment: .leading) {
+                    CustomDevider()
+                    Text("Mission Highlights")
+                        .font(.title.bold())
+                        .padding(.bottom, 5)
+                    Text(mission.description)
+                    CustomDevider()
+                    Text("Crew")
+                        .font(.title.bold())
+                        .padding(.bottom, 5)
                 }
+                .padding(.horizontal)
+                CrewScrollView(crew: crew)
             }
-            .background(.darkBackground)
-            .navigationTitle(mission.displayName)
         }
+        .background(.darkBackground)
+        .navigationTitle(mission.displayName)
     }
     
-    init(mission: Mission, astronauts: [String: Astronaut]) {
+    init(mission: Mission, astronauts: [String : Astronaut]) {
         self.mission = mission
         self.astronauts = astronauts
         
@@ -86,9 +84,7 @@ struct CrewScrollView: View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
                 ForEach(crew, id: \.role) { crewMember in
-                    NavigationLink {
-                        AstronautView(astronaut: crewMember.astronaut)
-                    } label: {
+                    NavigationLink(value: crewMember) {
                         Image(crewMember.astronaut.id)
                             .resizable()
                             .frame(width: 104, height: 72)
@@ -108,6 +104,9 @@ struct CrewScrollView: View {
                     }
                 }
             }
+        }
+        .navigationDestination(for: CrewMember.self) { crewMember in
+            AstronautView(astronaut: crewMember.astronaut)
         }
     }
 }
