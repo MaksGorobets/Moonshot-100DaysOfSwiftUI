@@ -18,6 +18,7 @@ struct Mission: Codable, Identifiable, Hashable {
     var launchDate: Date?
     var crew: [Crew]
     var description: String
+    var imgDescription: String
     
     var displayName: String {
         return "Apollo \(id)"

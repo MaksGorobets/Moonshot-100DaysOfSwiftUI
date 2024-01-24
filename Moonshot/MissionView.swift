@@ -31,6 +31,7 @@ struct MissionView: View {
                     .containerRelativeFrame(.horizontal) { width, Axis in
                         width * 0.6
                     }
+                    .accessibilityLabel(mission.imgDescription)
                 Text(mission.formattedLaunchDate)
                 VStack(alignment: .leading) {
                     CustomDevider()
